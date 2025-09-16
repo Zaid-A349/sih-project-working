@@ -9,6 +9,7 @@ function App() {
     >
       <div className="min-h-screen bg-black bg-opacity-50">
         <LoginPage />
+        <h1>Hello</h1>
       </div>
     </div>
   );
