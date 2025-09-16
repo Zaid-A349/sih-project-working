@@ -1,7 +1,6 @@
 import Header from '../../components/layout/Header';
-import { Users, CheckCircle, Clock, Search } from 'lucide-react';
+import { Users, CheckCircle, Clock } from 'lucide-react';
 
-// Mock Data
 const facultyData = {
   name: "Dr. Alan Grant",
   students: [
@@ -21,7 +20,6 @@ export default function FacultyDashboard() {
     <>
       <Header studentName={facultyData.name} />
       <main className="p-8">
-        {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <div className="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
                 <Users className="text-indigo-500" size={32}/>
@@ -45,12 +43,9 @@ export default function FacultyDashboard() {
                 </div>
             </div>
         </div>
-
-        {/* Approval Queue and Student List */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-md">
             <h2 className="text-xl font-semibold mb-4">Student List</h2>
-            {/* Student Table */}
             <table className="w-full text-left">
               <thead>
                 <tr className="text-gray-500">

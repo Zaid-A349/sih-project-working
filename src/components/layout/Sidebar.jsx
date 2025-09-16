@@ -1,6 +1,6 @@
 import { LayoutDashboard, Book, Award, Briefcase, LogOut, Users, FileBarChart, Settings } from 'lucide-react';
 import { useState } from 'react';
-import studentAvatar from '../../assets/student-avatar.png'; // Assuming you have this
+import studentAvatar from '../../assets/student-avatar.png';
 
 const Logo = () => (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,7 +21,6 @@ const SidebarLink = ({ icon, text, active, onClick }) => (
   </li>
 );
 
-// Configuration for different user types
 const menuConfig = {
   student: {
     links: [
@@ -62,7 +61,6 @@ export default function Sidebar({ userType = 'student' }) {
           <Logo />
           <h1 className="text-2xl font-bold text-indigo-600">SmartHub</h1>
         </div>
-
         <ul className="flex-1 px-3 mt-4">
           {config.links.map((item) => (
             <SidebarLink 
@@ -74,11 +72,9 @@ export default function Sidebar({ userType = 'student' }) {
             />
           ))}
         </ul>
-        
         <div className="border-t px-3">
           <SidebarLink icon={<LogOut size={20} />} text="Log Out" />
         </div>
-        
         <div className="border-t flex p-3 items-center">
             {config.user.avatar ? (
               <img src={config.user.avatar} alt="user avatar" className="w-10 h-10 rounded-md object-cover" />

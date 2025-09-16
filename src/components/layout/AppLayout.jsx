@@ -1,6 +1,5 @@
 import Sidebar from './Sidebar';
 
-// This layout receives the userType to configure the Sidebar
 export default function AppLayout({ children, userType }) {
   return (
     <div className="flex bg-gray-50 min-h-screen font-sans">
