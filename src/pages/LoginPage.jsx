@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import StudentLoginForm from './forms/StudentLoginForm';
-import FacultyLoginForm from './forms/FacultyLoginForm';
-import InstituteLoginForm from './forms/InstituteLoginForm';
+import StudentLoginForm from '../components/forms/StudentLoginForm';
+import FacultyLoginForm from '../components/forms/FacultyLoginForm';
+import InstituteLoginForm from '../components/forms/InstituteLoginForm';
 import { Building2 } from 'lucide-react';
 
 const LoginPage = () => {

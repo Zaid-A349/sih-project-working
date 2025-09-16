@@ -7,7 +7,6 @@ const StudentLoginForm = () => {
       <p className="text-gray-300 text-center mb-8">Access your academic and co-curricular portfolio.</p>
       
       <form className="space-y-6">
-        {/* Email Input */}
         <div className="relative">
           <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
           <input
@@ -16,8 +15,6 @@ const StudentLoginForm = () => {
             className="w-full pl-10 pr-4 py-3 bg-white/10 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-shadow"
           />
         </div>
-
-        {/* Password Input */}
         <div className="relative">
           <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
           <input
@@ -26,7 +23,6 @@ const StudentLoginForm = () => {
             className="w-full pl-10 pr-4 py-3 bg-white/10 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-shadow"
           />
         </div>
-
         <div className="flex items-center justify-between">
           <label className="flex items-center text-sm text-gray-300">
             <input type="checkbox" className="form-checkbox h-4 w-4 text-indigo-600 bg-gray-800 border-gray-600 rounded focus:ring-indigo-500" />
@@ -36,8 +32,6 @@ const StudentLoginForm = () => {
             Forgot Password?
           </a>
         </div>
-        
-        {/* Login Button */}
         <button
           type="submit"
           className="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-white font-semibold text-lg transition-all duration-300 transform hover:scale-105"
