@@ -29,7 +29,10 @@ const ActivityItem = ({ activity }) => {
             <span className={`px-2 py-1 text-xs font-semibold rounded-full ${statusClasses[activity.status]}`}>{activity.status}</span>
         </td>
         <td className="p-4 text-right">
-            <a href="#" className="font-medium text-indigo-600 hover:underline">View</a>
+            {/* --- Reverted the link styling to the original --- */}
+            <a href="#" className="font-medium text-indigo-600 hover:underline">
+              View
+            </a>
         </td>
     </tr>
   );

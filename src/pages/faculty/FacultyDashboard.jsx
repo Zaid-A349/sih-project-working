@@ -1,5 +1,6 @@
 import Header from '../../components/layout/Header';
 import { Users, CheckCircle, Clock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const facultyData = {
   name: "Dr. Alan Grant",
@@ -28,13 +29,17 @@ export default function FacultyDashboard() {
                     <p className="text-2xl font-bold">{facultyData.students.length}</p>
                 </div>
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
-                <Clock className="text-orange-500" size={32}/>
-                <div>
-                    <p className="text-gray-500">Pending Approvals</p>
-                    <p className="text-2xl font-bold">{facultyData.approvals.length}</p>
-                </div>
-            </div>
+            
+            <Link to="/faculty/approve-activities" className="block hover:shadow-lg transition-shadow rounded-xl">
+              <div className="bg-white p-6 rounded-xl shadow-md h-full flex items-center gap-4">
+                  <Clock className="text-orange-500" size={32}/>
+                  <div>
+                      <p className="text-gray-500">Pending Approvals</p>
+                      <p className="text-2xl font-bold">{facultyData.approvals.length}</p>
+                  </div>
+              </div>
+            </Link>
+
             <div className="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
                 <CheckCircle className="text-green-500" size={32}/>
                 <div>
@@ -43,6 +48,7 @@ export default function FacultyDashboard() {
                 </div>
             </div>
         </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-md">
             <h2 className="text-xl font-semibold mb-4">Student List</h2>
