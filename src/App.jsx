@@ -6,12 +6,12 @@ import LoginPage from './pages/LoginPage.jsx';
 import StudentDashboard from './pages/student/StudentDashboard.jsx';
 import FacultyDashboard from './pages/faculty/FacultyDashboard.jsx';
 import InstituteDashboard from './pages/institute/InstituteDashboard.jsx';
+import ConfirmationModal from './components/ui/ConfirmationModal.jsx'; // Import the modal
 
 function App() {
   const navigate = useNavigate();
   const [auth, setAuth] = useState({ isLoggedIn: false, userType: null });
-
-  console.log("App rendered. Current Auth State:", auth); // DEBUG LOG
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); // State for modal
 
   const getDashboardPath = (userType) => {
     switch (userType) {
@@ -22,28 +22,53 @@ function App() {
   };
 
   const handleLogin = (userType) => {
-    console.log("1. handleLogin called for userType:", userType); // DEBUG LOG
     setAuth({ isLoggedIn: true, userType: userType });
+  };
+
+  const handleLogout = () => {
+    setAuth({ isLoggedIn: false, userType: null });
+    setIsLogoutModalOpen(false); // Close modal
+    navigate('/login'); // Redirect to login
   };
   
   useEffect(() => {
     if (auth.isLoggedIn) {
       const path = getDashboardPath(auth.userType);
-      console.log("2. useEffect triggered. Navigating to:", path); // DEBUG LOG
       navigate(path);
     }
   }, [auth, navigate]);
 
   return (
-    <Routes>
-      <Route path="/login" element={<LoginPage handleLogin={handleLogin} />} />
-      
-      <Route path="/student/dashboard" element={auth.isLoggedIn ? <AppLayout userType="student"><StudentDashboard /></AppLayout> : <Navigate to="/login" />} />
-      <Route path="/faculty/dashboard" element={auth.isLoggedIn ? <AppLayout userType="faculty"><FacultyDashboard /></AppLayout> : <Navigate to="/login" />} />
-      <Route path="/institute/dashboard" element={auth.isLoggedIn ? <AppLayout userType="institute"><InstituteDashboard /></AppLayout> : <Navigate to="/login" />} />
-      
-      <Route path="/" element={<Navigate to="/login" />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/login" element={<LoginPage handleLogin={handleLogin} />} />
+        
+        {/* Pass the function to open the modal down to the layouts */}
+        <Route 
+          path="/student/dashboard" 
+          element={auth.isLoggedIn ? <AppLayout userType="student" onLogoutClick={() => setIsLogoutModalOpen(true)}><StudentDashboard /></AppLayout> : <Navigate to="/login" />} 
+        />
+        <Route 
+          path="/faculty/dashboard" 
+          element={auth.isLoggedIn ? <AppLayout userType="faculty" onLogoutClick={() => setIsLogoutModalOpen(true)}><FacultyDashboard /></AppLayout> : <Navigate to="/login" />} 
+        />
+        <Route 
+          path="/institute/dashboard" 
+          element={auth.isLoggedIn ? <AppLayout userType="institute" onLogoutClick={() => setIsLogoutModalOpen(true)}><InstituteDashboard /></AppLayout> : <Navigate to="/login" />} 
+        />
+        
+        <Route path="/" element={<Navigate to="/login" />} />
+      </Routes>
+
+      {/* Render the modal */}
+      <ConfirmationModal 
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={handleLogout}
+        title="Confirm Logout"
+        message="Are you sure you want to log out?"
+      />
+    </>
   );
 }
 

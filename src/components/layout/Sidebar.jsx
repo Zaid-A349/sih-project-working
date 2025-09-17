@@ -2,6 +2,7 @@ import { LayoutDashboard, Book, Award, Briefcase, LogOut, Users, FileBarChart, S
 import { useState } from 'react';
 import studentAvatar from '../../assets/student-avatar.png';
 
+// Logo and SidebarLink components remain unchanged...
 const Logo = () => (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 4L4 12L20 20L36 12L20 4Z" fill="#6366F1"/>
@@ -50,7 +51,8 @@ const menuConfig = {
   }
 };
 
-export default function Sidebar({ userType = 'student' }) {
+// Sidebar now accepts the onLogoutClick prop
+export default function Sidebar({ userType = 'student', onLogoutClick }) {
   const [activeItem, setActiveItem] = useState("Dashboard");
   const config = menuConfig[userType];
 
@@ -61,6 +63,7 @@ export default function Sidebar({ userType = 'student' }) {
           <Logo />
           <h1 className="text-2xl font-bold text-indigo-600">SmartHub</h1>
         </div>
+
         <ul className="flex-1 px-3 mt-4">
           {config.links.map((item) => (
             <SidebarLink 
@@ -72,9 +75,12 @@ export default function Sidebar({ userType = 'student' }) {
             />
           ))}
         </ul>
+        
         <div className="border-t px-3">
-          <SidebarLink icon={<LogOut size={20} />} text="Log Out" />
+          {/* The onClick now triggers the modal via the prop */}
+          <SidebarLink icon={<LogOut size={20} />} text="Log Out" onClick={onLogoutClick} />
         </div>
+        
         <div className="border-t flex p-3 items-center">
             {config.user.avatar ? (
               <img src={config.user.avatar} alt="user avatar" className="w-10 h-10 rounded-md object-cover" />
